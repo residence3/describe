@@ -161,19 +161,22 @@
 
   /* three big stats */
   .big3{
-    max-width:720px;margin:52px auto 0;
-    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    max-width:900px;margin:52px auto 0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
   }
-  @media(max-width:760px){.big3{gap:10px;}}
+  @media(max-width:760px){.big3{gap:10px;max-width:100%;}}
   .big3 .b-n{
-    font-size:clamp(24px,5.9vw,68px);
-    font-weight:700;letter-spacing:-.03em;line-height:1;
+    font-size:clamp(24px,4.6vw,56px);
+    font-weight:700;letter-spacing:-.03em;line-height:1.05;
   }
   .big3 .b-n.g1{background:linear-gradient(90deg,#2997ff,#a972ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .big3 .b-n.g2{background:linear-gradient(90deg,#0aa574,#64d2ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .big3 .b-n.g3{background:linear-gradient(90deg,#ff9f0a,#ff5f8f);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .big3 .b-c{margin-top:12px;font-size:14px;color:#86868b;line-height:1.6;}
-  @media(max-width:760px){.big3 .b-c{font-size:11px;margin-top:8px;}}
+  .big3 .b-c{
+    margin-top:12px;font-size:13px;color:#86868b;line-height:1.55;
+    max-width:19em;margin-left:auto;margin-right:auto;
+  }
+  @media(max-width:760px){.big3 .b-c{font-size:10.5px;margin-top:8px;line-height:1.45;}}
 
   /* project fact strip */
   .facts{
@@ -285,6 +288,14 @@
     color:#a1a1a6;letter-spacing:.01em;
   }
   .panel.light .sub-head, .panel.grey .sub-head{color:var(--ink-soft);}
+
+  .copy-mail{border:none;cursor:pointer;font-family:inherit;}
+  .copy-mail.done{background:#30d158;color:#000;}
+  .copy-toast{
+    margin-top:14px;font-size:13px;color:#30d158;
+    opacity:0;transition:opacity .25s ease;min-height:18px;
+  }
+  .copy-toast.on{opacity:1;}
 
   .mail-line{margin-top:18px;font-size:14px;color:#86868b;letter-spacing:.01em;}
 
@@ -877,10 +888,12 @@
     <p class="subhead" data-lang="ko">브랜드를 만들고 채널을 키우고 숫자로 증명해왔습니다.<br>지금 필요한 마케터가 여기 있습니다.</p>
     <p class="subhead" data-lang="en">I build brands, grow channels, and prove it with numbers.<br>The marketer you need is right here.</p>
     <div class="cta-btns">
-      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com" data-lang="ko">채용 문의하기</a>
-      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com" data-lang="en">Get in touch</a>
+      <button class="btn fill copy-mail" type="button" data-mail="youjin.yoon95@gmail.com">
+        <span data-lang="ko">이메일 주소 복사하기</span><span data-lang="en">Copy email address</span>
+      </button>
     </div>
     <p class="mail-line">youjin.yoon95@gmail.com</p>
+    <p class="copy-toast" id="copyToast" role="status" aria-live="polite"></p>
   </div>
 </section>
 
@@ -1002,6 +1015,42 @@
     lb.querySelector('.lb-close').addEventListener('click',close);
     document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !lb.hidden) close(); });
   })();
+</script>
+<script>
+  document.querySelectorAll('.copy-mail').forEach(function(btn){
+    btn.addEventListener('click', async function(){
+      const mail = btn.dataset.mail;
+      const toast = document.getElementById('copyToast');
+      const en = document.body.classList.contains('en');
+      let ok = true;
+      try {
+        await navigator.clipboard.writeText(mail);
+      } catch(e) {
+        const ta = document.createElement('textarea');
+        ta.value = mail; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(err){ ok = false; }
+        document.body.removeChild(ta);
+      }
+      if (toast) {
+        toast.textContent = ok
+          ? (en ? 'Copied — paste it into your mail app' : '복사되었습니다 — 메일에 붙여넣어 주세요')
+          : (en ? 'Copy failed. Please copy manually.' : '복사에 실패했습니다. 직접 복사해 주세요.');
+        toast.classList.add('on');
+      }
+      if (ok) {
+        btn.classList.add('done');
+        const label = btn.querySelector('span[data-lang="' + (en ? 'en' : 'ko') + '"]');
+        const orig = label.textContent;
+        label.textContent = en ? 'Copied!' : '복사 완료!';
+        setTimeout(function(){
+          btn.classList.remove('done');
+          label.textContent = orig;
+          if (toast) toast.classList.remove('on');
+        }, 2600);
+      }
+    });
+  });
 </script>
 </body>
 </html>
