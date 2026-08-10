@@ -48,18 +48,25 @@
     border-bottom:1px solid rgba(0,0,0,.08);
   }
   .nav-inner{
-    max-width:860px;margin:0 auto;
+    max-width:none;margin:0;
     display:flex;align-items:center;justify-content:space-between;
-    height:48px;padding:0 22px;
+    height:48px;padding:0 clamp(16px,3vw,40px);
   }
   .nav .brand{font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;}
-  .nav ul{display:flex;gap:34px;list-style:none;}
+  .nav ul{
+    display:flex;gap:34px;list-style:none;
+    position:absolute;left:50%;transform:translateX(-50%);
+  }
+  .nav-inner{position:relative;}
   .nav ul a{font-size:12px;color:var(--ink);text-decoration:none;opacity:.85;transition:opacity .2s;}
   .nav ul a:hover{opacity:1;}
   @media(max-width:760px){
     .nav-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:8px;}
-    .nav ul{gap:18px;order:3;width:100%;justify-content:center;padding-bottom:2px;}
-    .nav ul a{font-size:13px;}
+    .nav ul{
+      position:static;transform:none;
+      gap:16px;order:3;width:100%;justify-content:center;padding-bottom:2px;
+    }
+    .nav ul a{font-size:12.5px;}
   }
   .lang-btn{
     font-size:11px;font-weight:500;letter-spacing:.02em;
@@ -75,6 +82,16 @@
   .panel.grey{background:var(--grey);}
   .panel.dark{background:var(--black);color:#f5f5f7;}
   .panel-pad{padding:92px 22px 100px;}
+  /* hero fills the screen, minus the sticky nav */
+  .hero-full{
+    min-height:calc(100svh - 48px);
+    display:flex;align-items:center;justify-content:center;
+    padding:48px 22px;
+  }
+  @media(max-width:760px){
+    .hero-full{min-height:calc(100svh - 92px);padding:40px 18px;}
+  }
+
 
   .eyebrow{font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.01em;}
   .panel.dark .eyebrow{color:#86868b;}
@@ -346,7 +363,7 @@
 </div>
 
 <!-- ================= HERO ================= -->
-<section class="panel light panel-pad" id="top">
+<section class="panel light hero-full" id="top">
   <div class="reveal">
     <p class="eyebrow" data-lang="ko">홍보 · IMC 마케팅 · 브랜딩</p>
     <p class="eyebrow" data-lang="en">PR · IMC Marketing · Branding</p>
