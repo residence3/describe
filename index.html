@@ -104,8 +104,30 @@
     .name-anim{animation:none;letter-spacing:.14em;}
   }
 
+  /* scroll indicator */
+  .scroll-cue{
+    position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    text-decoration:none;opacity:.55;transition:opacity .25s ease;
+  }
+  .scroll-cue:hover{opacity:1;}
+  .scroll-cue:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:50%;}
+  .cue-arrow{
+    width:13px;height:13px;
+    border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    transform:rotate(45deg);
+    animation:cueBob 1.9s ease-in-out infinite;
+  }
+  @keyframes cueBob{
+    0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5;}
+    50%    {transform:rotate(45deg) translate(4px,4px);opacity:1;}
+  }
+  @media(prefers-reduced-motion:reduce){.cue-arrow{animation:none;}}
+  @media(max-width:760px){.scroll-cue{bottom:22px;}}
+
   /* hero fills the screen, minus the sticky nav */
   .hero-full{
+    position:relative;
     min-height:calc(100svh - 48px);
     display:flex;align-items:center;justify-content:center;
     padding:48px 22px;
@@ -413,6 +435,9 @@
       <span class="tag" data-lang="ko">#제휴마케팅</span><span class="tag" data-lang="en">#PartnershipMarketing</span>
       <span class="tag" data-lang="ko">#행사</span><span class="tag" data-lang="en">#Events</span>
     </div>
+    <a class="scroll-cue" href="#p1" aria-label="아래로 스크롤">
+      <span class="cue-arrow" aria-hidden="true"></span>
+    </a>
   </div>
 </section>
 
@@ -653,8 +678,8 @@
       </div>
       <div>
         <div class="b-n g3">Grand Prix</div>
-        <p class="b-c" data-lang="ko">A.N.D. 어워드 디지털 산업분야 · 도달 약 72만 건</p>
-        <p class="b-c" data-lang="en">A.N.D. Award, digital industry · approx. 720K reach</p>
+        <p class="b-c" data-lang="ko">A.N.D. 어워드 디지털 산업분야</p>
+        <p class="b-c" data-lang="en">A.N.D. Award, digital industry</p>
       </div>
     </div>
 
