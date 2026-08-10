@@ -91,6 +91,19 @@
   .panel.grey{background:var(--grey);}
   .panel.dark{background:var(--black);color:#f5f5f7;}
   .panel-pad{padding:92px 22px 100px;}
+  /* name intro — letter-spacing widens and scale grows, then holds */
+  .name-anim{
+    animation:nameIn 1.6s cubic-bezier(.22,.68,.28,1) .15s both;
+    will-change:letter-spacing, transform;
+  }
+  @keyframes nameIn{
+    from{ letter-spacing:-.02em; transform:scale(.92); }
+    to  { letter-spacing:.14em;  transform:scale(1); }
+  }
+  @media(prefers-reduced-motion:reduce){
+    .name-anim{animation:none;letter-spacing:.14em;}
+  }
+
   /* hero fills the screen, minus the sticky nav */
   .hero-full{
     min-height:calc(100svh - 48px);
@@ -387,8 +400,8 @@
   <div class="reveal">
     <p class="eyebrow" data-lang="ko">홍보 · IMC 마케팅 · 브랜딩</p>
     <p class="eyebrow" data-lang="en">PR · IMC Marketing · Branding</p>
-    <h1 class="headline xl" data-lang="ko">윤유진</h1>
-    <h1 class="headline xl" data-lang="en">YouJin Yoon</h1>
+    <h1 class="headline xl name-anim" data-lang="ko">윤유진</h1>
+    <h1 class="headline xl name-anim" data-lang="en">YouJin Yoon</h1>
     <p class="subhead" data-lang="ko">사람을 움직이는 마케팅. 기획부터 실행까지.</p>
     <p class="subhead" data-lang="en">Marketing that moves people. From planning to execution.</p>
     <div class="hashtags">
@@ -711,6 +724,7 @@
       <li>제휴 마케팅 — 외부 파트너 협업 기획·운영</li>
       <li>센터별 프로모션 기획·운영</li>
       <li>알림톡 전환 자동화 프로젝트 PM</li>
+      <li>검진 고객 만족도조사 전산화 및 데이터 취합</li>
       <li>VIP 개원기념 행사 기획·운영</li>
       <li>타깃 세그먼트 유료메시지 발송</li>
       <li>회원 리텐션 관리</li>
@@ -721,6 +735,7 @@
       <li>Partnership marketing with external partners</li>
       <li>Center-specific promotion planning</li>
       <li>PM for notification-message automation</li>
+      <li>Digitized health-screening satisfaction surveys and data aggregation</li>
       <li>VIP anniversary event planning</li>
       <li>Segment-based paid messaging</li>
       <li>Member retention management</li>
@@ -796,10 +811,12 @@
         <h3 data-lang="ko">본글로벌 · 마케팅팀</h3>
         <h3 data-lang="en">Born Global · Marketing Team</h3>
         <ul data-lang="ko">
-          <li>동남아 중심 해외 시장조사 보고서 — 수출입 데이터·공급망 분석 · 프리랜서 계약 관리</li>
+          <li>동남아 중심 해외 시장조사 보고서 — 수출입 데이터·공급망 분석</li>
+          <li>프리랜서 계약 관리</li>
         </ul>
         <ul data-lang="en">
-          <li>Overseas market reports on Southeast Asia — trade data and supply-chain analysis; freelancer management</li>
+          <li>Overseas market reports on Southeast Asia — trade data and supply-chain analysis</li>
+          <li>Freelancer contract management</li>
         </ul>
       </div>
     </div>
@@ -810,10 +827,12 @@
         <h3 data-lang="ko">현대글로벌서비스 유럽법인 (네덜란드 로테르담)</h3>
         <h3 data-lang="en">Hyundai Global Service Europe B.V. (Rotterdam)</h3>
         <ul data-lang="ko">
-          <li>선주사·제조업체·물류센터 간 글로벌 커뮤니케이션·일정 조율 · 월간 목표 매출 관리·데이터 분석</li>
+          <li>선주사·제조업체·물류센터 간 글로벌 커뮤니케이션·일정 조율</li>
+          <li>월간 목표 매출 관리·데이터 분석</li>
         </ul>
         <ul data-lang="en">
-          <li>Global logistics coordination in English; monthly sales-target management and data analysis</li>
+          <li>Global logistics coordination in English</li>
+          <li>Monthly sales-target management and data analysis</li>
         </ul>
       </div>
     </div>
