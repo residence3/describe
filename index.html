@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>윤유진 YouJin Yoon — Portfolio</title>
+<meta name="description" content="윤유진 포트폴리오 — 홍보 · IMC 마케팅 · 브랜딩">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --white:#ffffff;
+    --grey:#f5f5f7;
+    --black:#000000;
+    --ink:#1d1d1f;
+    --ink-soft:#6e6e73;
+    --blue:#0066cc;
+    --blue-dark:#2997ff;
+    --font:-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro KR",
+           "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+           "Helvetica Neue", "Segoe UI", "Malgun Gothic", sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);color:var(--ink);font-family:var(--font);
+    -webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.01em;
+  }
+  ::selection{background:#b3d7ff;}
+
+  /* ---------- language toggle ---------- */
+  [data-lang="en"]{display:none !important;}
+  body.en [data-lang="en"]{display:revert !important;}
+  body.en [data-lang="ko"]{display:none !important;}
+  body.en ul.pj-list[data-lang="en"]{display:grid !important;}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(251,251,253,.8);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .nav-inner{
+    max-width:1024px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    height:48px;padding:0 22px;
+  }
+  .nav .brand{font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;}
+  .nav ul{display:flex;gap:34px;list-style:none;}
+  .nav ul a{font-size:12px;color:var(--ink);text-decoration:none;opacity:.85;transition:opacity .2s;}
+  .nav ul a:hover{opacity:1;}
+  @media(max-width:760px){
+    .nav-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:8px;}
+    .nav ul{gap:18px;order:3;width:100%;justify-content:center;padding-bottom:2px;}
+    .nav ul a{font-size:13px;}
+  }
+  .lang-btn{
+    font-size:11px;font-weight:500;letter-spacing:.02em;
+    border:1px solid rgba(0,0,0,.25);background:transparent;color:var(--ink);
+    padding:5px 14px;border-radius:999px;cursor:pointer;transition:all .2s;
+  }
+  .lang-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .lang-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+
+  /* ---------- panels ---------- */
+  .panel{text-align:center;overflow:hidden;}
+  .panel.light{background:var(--white);}
+  .panel.grey{background:var(--grey);}
+  .panel.dark{background:var(--black);color:#f5f5f7;}
+  .panel-pad{padding:92px 22px 100px;}
+
+  .eyebrow{font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.01em;}
+  .panel.dark .eyebrow{color:#86868b;}
+  .eyebrow .pj{color:var(--blue);}
+  .panel.dark .eyebrow .pj{color:var(--blue-dark);}
+
+  .headline{font-size:clamp(38px,6.4vw,64px);font-weight:700;letter-spacing:-.02em;line-height:1.08;}
+  .headline.xl{font-size:clamp(48px,9vw,96px);}
+  .subhead{
+    font-size:clamp(18px,2.3vw,25px);font-weight:400;
+    color:var(--ink-soft);margin-top:12px;line-height:1.45;
+    max-width:34em;margin-left:auto;margin-right:auto;
+  }
+  .panel.dark .subhead{color:#a1a1a6;}
+
+  .links{margin-top:22px;display:flex;justify-content:center;gap:34px;flex-wrap:wrap;}
+  .links a{font-size:clamp(17px,1.8vw,20px);color:var(--blue);text-decoration:none;}
+  .links a::after{content:" ›";}
+  .links a:hover{text-decoration:underline;}
+  .panel.dark .links a{color:var(--blue-dark);}
+
+  /* hero hashtags */
+  .hashtags{margin-top:28px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:640px;margin-left:auto;margin-right:auto;}
+  .hashtags .tag{
+    font-size:14px;font-weight:500;color:var(--blue);
+    background:rgba(0,102,204,.08);
+    padding:7px 16px;border-radius:999px;
+    transition:all .2s;cursor:default;
+  }
+  .hashtags .tag:hover{background:rgba(0,102,204,.15);}
+  body.en .hashtags .tag[data-lang="en"]{display:inline-block;}
+
+  /* project big stat */
+  .stat{
+    margin-top:38px;
+    font-size:clamp(58px,11vw,124px);
+    font-weight:700;letter-spacing:-.03em;line-height:1;
+  }
+  .stat.g1{background:linear-gradient(90deg,#2997ff,#a972ff 55%,#ff5f8f);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat.g2{background:linear-gradient(90deg,#0aa574,#0a84ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat.g3{background:linear-gradient(90deg,#ff9f0a,#ff375f);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat.g4{background:linear-gradient(90deg,#5e5ce6,#2997ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat-cap{margin-top:12px;font-size:15px;color:var(--ink-soft);}
+  .panel.dark .stat-cap{color:#86868b;}
+
+  /* project bullet list */
+  .pj-list{
+    max-width:680px;margin:34px auto 0;text-align:left;
+    display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;list-style:none;
+  }
+  @media(max-width:640px){.pj-list{grid-template-columns:1fr;}}
+  .pj-list li{
+    font-size:15px;color:#d1d1d6;padding-left:18px;position:relative;line-height:1.65;
+  }
+  .pj-list li::before{content:"·";position:absolute;left:4px;color:var(--blue-dark);font-weight:700;}
+  .panel.light .pj-list li, .panel.grey .pj-list li{color:#424245;}
+  .panel.light .pj-list li::before, .panel.grey .pj-list li::before{color:var(--blue);}
+
+  /* three big stats */
+  .big3{
+    max-width:1080px;margin:56px auto 0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  }
+  @media(max-width:760px){.big3{gap:10px;}}
+  .big3 .b-n{
+    font-size:clamp(24px,5.9vw,68px);
+    font-weight:700;letter-spacing:-.03em;line-height:1;
+  }
+  .big3 .b-n.g1{background:linear-gradient(90deg,#2997ff,#a972ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .big3 .b-n.g2{background:linear-gradient(90deg,#0aa574,#64d2ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .big3 .b-n.g3{background:linear-gradient(90deg,#ff9f0a,#ff5f8f);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .big3 .b-c{margin-top:12px;font-size:14px;color:#86868b;line-height:1.6;}
+  @media(max-width:760px){.big3 .b-c{font-size:11px;margin-top:8px;}}
+
+  /* project fact strip */
+  .facts{
+    margin:44px auto 0;max-width:820px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;
+    border-top:1px solid #d2d2d7;
+  }
+  .panel.dark .facts{border-color:#333336;}
+  .fact{padding:22px 18px 0;}
+  .fact .f-n{font-size:clamp(21px,2.6vw,28px);font-weight:700;letter-spacing:-.015em;}
+  .fact .f-c{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+  .panel.dark .fact .f-c{color:#86868b;}
+
+  /* project gallery */
+  .gallery{max-width:1080px;margin:56px auto 0;padding:0 4px;}
+  .gallery img{width:100%;display:block;border-radius:20px;}
+  .gallery .g-row{display:grid;grid-template-columns:1.62fr 1fr;gap:14px;margin-top:14px;}
+  @media(max-width:700px){.gallery .g-row{grid-template-columns:1fr;}}
+  .gallery .g-row img{height:100%;object-fit:cover;border-radius:20px;}
+  .g-cap{margin-top:14px;font-size:12px;color:#86868b;}
+
+  /* small tile grid (secondary highlights) */
+  .grid{
+    max-width:1240px;margin:44px auto 0;
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px;
+  }
+  @media(max-width:840px){.grid{grid-template-columns:1fr;}}
+  .tile{background:var(--white);padding:54px 30px 58px;text-align:center;}
+  .tile h3{font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.015em;}
+  .tile .t-sub{font-size:16px;color:var(--ink-soft);margin-top:8px;max-width:46ch;margin-left:auto;margin-right:auto;}
+  .tile .t-stat{margin-top:18px;font-size:clamp(26px,3.4vw,36px);font-weight:700;letter-spacing:-.02em;color:var(--blue);}
+
+
+  /* slider */
+  .slider{position:relative;max-width:920px;margin:56px auto 0;}
+  .slider-track{display:flex;transition:transform .45s ease;}
+  .slide-item{min-width:100%;padding:0 2px;}
+  .slide-item img{width:100%;max-height:560px;object-fit:contain;display:block;border-radius:18px;}
+  .s-cap{margin-top:12px;font-size:12.5px;color:#86868b;text-align:center;}
+  .slider{overflow:hidden;}
+  .s-btn{
+    position:absolute;top:42%;transform:translateY(-50%);
+    width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(210,210,215,.72);color:#1d1d1f;font-size:22px;line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:background .2s;
+  }
+  .s-btn:hover{background:rgba(255,255,255,.92);}
+  .s-btn.prev{left:10px;}
+  .s-btn.next{right:10px;}
+  .s-dots{display:flex;justify-content:center;gap:7px;margin-top:16px;flex-wrap:wrap;}
+  .s-dots button{width:7px;height:7px;border-radius:50%;border:none;cursor:pointer;background:#48484a;padding:0;transition:all .2s;}
+  .s-dots button.on{background:#f5f5f7;transform:scale(1.3);}
+
+
+  /* image grid — 2 rows, horizontal slide */
+  .grid-wrap{position:relative;max-width:1080px;margin:56px auto 0;}
+  .img-grid{
+    display:grid;grid-auto-flow:column;
+    grid-template-rows:repeat(2,1fr);
+    grid-auto-columns:clamp(130px,16vw,190px);
+    gap:0;overflow-x:auto;
+    scroll-snap-type:x proximity;scroll-behavior:smooth;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .img-grid::-webkit-scrollbar{display:none;}
+  .tile-img{position:relative;aspect-ratio:1/1;overflow:hidden;cursor:zoom-in;margin:0;scroll-snap-align:start;}
+  .tile-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease, filter .35s ease;}
+  .tile-img:hover img, .tile-img:focus-visible img{transform:scale(1.08);filter:brightness(1.08);}
+  .tile-img:focus-visible{outline:2px solid var(--blue-dark);outline-offset:-2px;}
+  .g-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(210,210,215,.78);color:#1d1d1f;font-size:22px;line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:opacity .2s, background .2s;
+  }
+  .g-btn:hover{background:rgba(255,255,255,.95);}
+  .g-btn.prev{left:-8px;}
+  .g-btn.next{right:-8px;}
+  @media(max-width:700px){.g-btn{display:none;}}
+
+  .lightbox{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(0,0,0,.92);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:34px 16px;
+  }
+  .lightbox[hidden]{display:none;}
+  .lightbox img{max-width:min(1200px,94vw);max-height:82vh;object-fit:contain;border-radius:8px;}
+  .lb-cap{margin-top:14px;font-size:14px;color:#d1d1d6;text-align:center;}
+  .lb-close{
+    position:absolute;top:18px;right:22px;
+    width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(255,255,255,.14);color:#fff;font-size:24px;line-height:1;
+  }
+  .lb-close:hover{background:rgba(255,255,255,.28);}
+
+  .tile-link{display:block;cursor:pointer;}
+  .tile-badge{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.72));
+    color:#fff;font-size:10.5px;letter-spacing:.02em;
+    padding:16px 8px 7px;text-align:center;
+    opacity:0;transition:opacity .3s ease;
+  }
+  .tile-link:hover .tile-badge, .tile-link:focus-visible .tile-badge{opacity:1;}
+
+  /* video embeds — small thumbnails */
+  .videos{
+    max-width:1080px;margin:28px auto 0;
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  }
+  .videos > div{width:min(300px,46%);}
+  @media(max-width:480px){.videos > div{width:min(300px,80%);}}
+  .video-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111;}
+  .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .v-cap{margin-top:8px;font-size:11.5px;color:#86868b;text-align:center;}
+
+  .panel.light .s-btn, .panel.grey .s-btn{background:rgba(29,29,31,.55);color:#fff;}
+  .panel.light .s-btn:hover, .panel.grey .s-btn:hover{background:rgba(29,29,31,.8);}
+  .panel.light .s-dots button, .panel.grey .s-dots button{background:#c7c7cc;}
+  .panel.light .s-dots button.on, .panel.grey .s-dots button.on{background:#1d1d1f;}
+
+  /* ---------- detail rows (career) ---------- */
+  .detail{max-width:1024px;margin:0 auto;text-align:left;padding:0 22px;}
+  .row{display:grid;grid-template-columns:190px 1fr;gap:34px;padding:38px 0;border-top:1px solid #d2d2d7;}
+  .row:first-of-type{border-top:none;}
+  @media(max-width:700px){.row{grid-template-columns:1fr;gap:8px;}}
+  .row .when{font-size:14px;color:var(--ink-soft);padding-top:5px;}
+  .row h3{font-size:21px;font-weight:600;letter-spacing:-.01em;}
+  .row .role{font-size:15px;color:var(--ink-soft);margin-top:2px;}
+  .row ul{list-style:none;margin-top:14px;}
+  .row li{font-size:15px;color:#424245;margin-bottom:7px;padding-left:16px;position:relative;line-height:1.6;}
+  .row li::before{content:"·";position:absolute;left:2px;color:var(--ink-soft);}
+  .row li strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- skills ---------- */
+  .skill-wrap{
+    max-width:1024px;margin:44px auto 0;text-align:left;padding:0 22px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:38px;
+  }
+  .skill-col h3{font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-size:13px;background:var(--white);border:1px solid #d2d2d7;padding:6px 14px;border-radius:999px;color:var(--ink);}
+
+  /* ---------- edu ---------- */
+  .edu-strip{
+    max-width:1024px;margin:44px auto 0;padding:0 22px;text-align:left;
+    display:grid;grid-template-columns:1fr 1fr;gap:38px;
+  }
+  @media(max-width:700px){.edu-strip{grid-template-columns:1fr;}}
+  .edu-strip h3{font-size:19px;font-weight:600;}
+  .edu-strip p{font-size:15px;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
+
+  /* ---------- contact ---------- */
+  .cta-btns{margin-top:30px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .btn{font-size:17px;text-decoration:none;border-radius:999px;padding:12px 28px;transition:all .2s;}
+  .btn.fill{background:#0071e3;color:#fff;}
+  .btn.fill:hover{background:#0077ed;}
+  .btn.ghost{color:var(--blue-dark);border:1px solid var(--blue-dark);}
+  .btn.ghost:hover{background:var(--blue-dark);color:#000;}
+
+  footer{background:var(--grey);border-top:1px solid #d2d2d7;}
+  .foot-inner{max-width:1024px;margin:0 auto;padding:24px 22px 44px;text-align:left;}
+  .fine{font-size:12px;color:var(--ink-soft);line-height:1.7;border-bottom:1px solid #d2d2d7;padding-bottom:14px;}
+  .foot-meta{margin-top:14px;font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .foot-meta a{color:var(--ink-soft);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<div class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">YouJin Yoon</a>
+    <ul>
+      <li><a href="#p1"><span data-lang="ko">프로젝트</span><span data-lang="en">Projects</span></a></li>
+      <li><a href="#career"><span data-lang="ko">경력</span><span data-lang="en">Career</span></a></li>
+      <li><a href="#skills"><span data-lang="ko">스킬</span><span data-lang="en">Skills</span></a></li>
+      <li><a href="#contact"><span data-lang="ko">연락처</span><span data-lang="en">Contact</span></a></li>
+    </ul>
+    <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="panel light panel-pad" id="top">
+  <div class="reveal">
+    <p class="eyebrow" data-lang="ko">홍보 · IMC 마케팅 · 브랜딩</p>
+    <p class="eyebrow" data-lang="en">PR · IMC Marketing · Branding</p>
+    <h1 class="headline xl" data-lang="ko">윤유진</h1>
+    <h1 class="headline xl" data-lang="en">YouJin Yoon</h1>
+    <p class="subhead" data-lang="ko">사람을 움직이는 마케팅. 기획부터 실행까지.</p>
+    <p class="subhead" data-lang="en">Marketing that moves people. From planning to execution.</p>
+    <div class="hashtags">
+      <span class="tag" data-lang="ko">#브랜딩</span><span class="tag" data-lang="en">#Branding</span>
+      <span class="tag" data-lang="ko">#콘텐츠기획제작</span><span class="tag" data-lang="en">#ContentCreation</span>
+      <span class="tag" data-lang="ko">#IMC마케팅</span><span class="tag" data-lang="en">#IMCMarketing</span>
+      <span class="tag" data-lang="ko">#SNS운영</span><span class="tag" data-lang="en">#SocialMedia</span>
+      <span class="tag" data-lang="ko">#영상기획</span><span class="tag" data-lang="en">#VideoPlanning</span>
+      <span class="tag" data-lang="ko">#제휴마케팅</span><span class="tag" data-lang="en">#PartnershipMarketing</span>
+      <span class="tag" data-lang="ko">#행사</span><span class="tag" data-lang="en">#Events</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECT 01 (dark) ================= -->
+<section class="panel dark panel-pad" id="p1">
+  <div class="reveal">
+    <p class="eyebrow"><span data-lang="ko"><span class="pj">프로젝트 01</span> · 강원도청 · 2021–2022</span><span data-lang="en"><span class="pj">Project 01</span> · Gangwon Province · 2021–2022</span></p>
+    <h2 class="headline" data-lang="ko">강원네이처로드</h2>
+    <h2 class="headline" data-lang="en">Gangwon Nature Road</h2>
+    <p class="subhead" data-lang="ko">강원도의 자연을 잇는 7개 드라이브 코스 관광도로 브랜드.<br>브랜드 채널 구축부터 글로벌 브랜드 협업까지 온오프라인을 아우르는<br>IMC 캠페인을 기획하고 운영했습니다.</p>
+    <p class="subhead" data-lang="en">A tourism-road brand of seven drive courses connecting Gangwon's nature. Planned and ran integrated on/offline IMC campaigns — from building brand channels to global brand collaborations.</p>
+    <ul class="pj-list" data-lang="ko">
+      <li>Tesla × Stayfolio 협업 캠페인</li>
+      <li>강원네이처로드 공식 홈페이지 제작</li>
+      <li>할리데이비슨 랠리 캠페인</li>
+      <li>블랙야크 인증 챌린지</li>
+      <li>내셔널지오그래픽 매거진 특집 기사</li>
+      <li>더바이크 매거진 광고 및 대회 후원</li>
+      <li>카카오맵 강원네이처로드 등록</li>
+      <li>고속도로 휴게소 영상 광고</li>
+      <li>인터파크투어 상품 판매</li>
+      <li>서포터즈 운영</li>
+      <li>인스타그램 등 SNS 채널 운영</li>
+      <li>유튜브 영상 콘텐츠 제작</li>
+    </ul>
+    <ul class="pj-list" data-lang="en">
+      <li>Tesla × Stayfolio collaboration campaign</li>
+      <li>Official Nature Road website production</li>
+      <li>Harley-Davidson rally campaign</li>
+      <li>BlackYak certification challenge</li>
+      <li>National Geographic magazine feature article</li>
+      <li>The Bike magazine ads and event sponsorship</li>
+      <li>Kakao Map listing for Nature Road</li>
+      <li>Highway rest-stop video advertising</li>
+      <li>Interpark Tour product sales</li>
+      <li>Supporter program</li>
+      <li>Social channel operations incl. Instagram</li>
+      <li>YouTube video content production</li>
+    </ul>
+    <div class="big3">
+      <div>
+        <div class="b-n g1">11,947<span style="font-size:.42em;font-weight:600;">명</span></div>
+        <p class="b-c" data-lang="ko">Tesla × Stayfolio 캠페인 참가자 (2주)</p>
+        <p class="b-c" data-lang="en">Tesla × Stayfolio campaign participants (2 weeks)</p>
+      </div>
+      <div>
+        <div class="b-n g2">543만+</div>
+        <p class="b-c" data-lang="ko">온오프라인 통합 노출</p>
+        <p class="b-c" data-lang="en">Integrated on/offline impressions</p>
+      </div>
+      <div>
+        <div class="b-n g3">1,000+<span style="font-size:.42em;font-weight:600;">명</span></div>
+        <p class="b-c" data-lang="ko">할리데이비슨 랠리 캠페인 참가자</p>
+        <p class="b-c" data-lang="en">Harley-Davidson rally campaign participants</p>
+      </div>
+    </div>
+    <div class="img-grid" id="grid-p1">
+        <figure class="tile-img" tabindex="0" data-ko="Tesla × Stayfolio 캠페인" data-en="Tesla × Stayfolio campaign">
+          <img src="images/img01.jpg" alt="Tesla × Stayfolio 캠페인" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="Tesla × Stayfolio 캠페인" data-en="Tesla × Stayfolio campaign">
+          <img src="images/img02.jpg" alt="Tesla × Stayfolio 캠페인" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="할리데이비슨 랠리 캠페인" data-en="Harley-Davidson rally campaign">
+          <img src="images/img03.jpg" alt="할리데이비슨 랠리 캠페인" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="할리데이비슨 랠리 캠페인" data-en="Harley-Davidson rally campaign">
+          <img src="images/img04.jpg" alt="할리데이비슨 랠리 캠페인" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 스탬프투어" data-en="Gangwon Nature Road stamp tour">
+          <img src="images/img05.jpg" alt="강원네이처로드 스탬프투어" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 스탬프투어" data-en="Gangwon Nature Road stamp tour">
+          <img src="images/img06.jpg" alt="강원네이처로드 스탬프투어" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 스탬프투어" data-en="Gangwon Nature Road stamp tour">
+          <img src="images/img07.jpg" alt="강원네이처로드 스탬프투어" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 블랙야크 인증챌린지" data-en="Gangwon Nature Road BlackYak certification challenge">
+          <img src="images/img08.jpg" alt="강원네이처로드 블랙야크 인증챌린지" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="인터파크투어 강원네이처로드 기획전" data-en="Interpark Tour Gangwon Nature Road promotion">
+          <img src="images/img09.jpg" alt="인터파크투어 강원네이처로드 기획전" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="인터파크투어 강원네이처로드 기획전" data-en="Interpark Tour Gangwon Nature Road promotion">
+          <img src="images/img10.jpg" alt="인터파크투어 강원네이처로드 기획전" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="인터파크투어 강원네이처로드 기획전" data-en="Interpark Tour Gangwon Nature Road promotion">
+          <img src="images/img11.jpg" alt="인터파크투어 강원네이처로드 기획전" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원도투어패스 프로모션" data-en="Gangwon Tour Pass promotion">
+          <img src="images/img12.jpg" alt="강원도투어패스 프로모션" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 가이드북" data-en="Gangwon Nature Road guidebook">
+          <img src="images/img13.jpg" alt="강원네이처로드 가이드북" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="강원네이처로드 포스터" data-en="Gangwon Nature Road poster">
+          <img src="images/img14.jpg" alt="강원네이처로드 포스터" loading="lazy">
+        </figure>
+    </div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" hidden>
+      <button class="lb-close" aria-label="닫기">×</button>
+      <img alt="">
+      <p class="lb-cap"></p>
+    </div>
+    <div class="videos">
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/uzSq8sYFomA" title="강원네이처로드 영상 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/Hqvntoqwzo0" title="강원네이처로드 영상 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECT 02 (light) ================= -->
+<section class="panel light panel-pad">
+  <div class="reveal">
+    <p class="eyebrow"><span class="pj" data-lang="ko">프로젝트 02</span><span class="pj" data-lang="en">Project 02</span> · K-Tour Top 10</p>
+    <h2 class="headline" data-lang="ko">집콕여행꾸러미</h2>
+    <h2 class="headline" data-lang="en">Stay-Home Travel Kit</h2>
+    <p class="subhead" data-lang="ko">문화체육관광부 대한민국 테마여행 10선 국내여행 활성화 사업.<br>지역 특산품을 발굴해 브랜드 상품으로 만들고 콘텐츠·광고·유통까지<br>커머스 전 과정을 기획하고 운영했습니다.</p>
+    <p class="subhead" data-lang="en">Ministry of Culture's K-Tour Top 10 domestic-travel initiative.<br>Turned regional specialties into brand products and ran the full commerce cycle —<br>content, advertising, and distribution.</p>
+    <ul class="pj-list" data-lang="ko">
+      <li>집콕여행꾸러미 브랜드 기획·상세페이지 디자인 제작</li>
+      <li>네이버 스마트스토어·29CM·띵굴마켓 등 판매처 발굴</li>
+      <li>인스타그램·페이스북·블로그·틱톡 SNS 운영</li>
+      <li>카카오·네이버 검색광고 기획·집행</li>
+      <li>해태제과 연양갱 패키지 콜라보</li>
+      <li>복순도가 스페셜 꾸러미 콜라보</li>
+      <li>웨스틴 조선 부산 헬로 서머 패키지 어메니티 키트 제작</li>
+      <li>슈퍼주니어 협업 영상 콘텐츠 제작 (11편 243만 회)</li>
+      <li>GARAK 해외 홍보 영상 제작 (983만 회)</li>
+      <li>서울국제관광박람회·내나라여행박람회 부스 운영</li>
+      <li>SRT 매거진 기사 원고 작성</li>
+    </ul>
+    <ul class="pj-list" data-lang="en">
+      <li>Travel-kit brand planning and product-page design</li>
+      <li>Sales-channel development — Naver Smart Store, 29CM, Thingool</li>
+      <li>Social operations across Instagram, Facebook, blog, TikTok</li>
+      <li>Kakao and Naver search-ad planning and execution</li>
+      <li>Haitai snack-package collaboration</li>
+      <li>Boksoondoga special-kit collaboration</li>
+      <li>Amenity kit for the Westin Josun Busan summer package</li>
+      <li>Super Junior video content production (11 videos, 2.43M views)</li>
+      <li>GARAK overseas promotional film production (9.83M views)</li>
+      <li>Travel-fair booth operations</li>
+      <li>SRT magazine article writing</li>
+    </ul>
+    <div class="big3">
+      <div>
+        <div class="b-n g2">41<span style="font-size:.42em;font-weight:600;">개</span></div>
+        <p class="b-c" data-lang="ko">개발 상품 수</p>
+        <p class="b-c" data-lang="en">Products developed</p>
+      </div>
+      <div>
+        <div class="b-n g1">10,233<span style="font-size:.42em;font-weight:600;">개</span></div>
+        <p class="b-c" data-lang="ko">총 판매량</p>
+        <p class="b-c" data-lang="en">Total units sold</p>
+      </div>
+      <div>
+        <div class="b-n g3">1.75억+</div>
+        <p class="b-c" data-lang="ko">추정 매출 (원)</p>
+        <p class="b-c" data-lang="en">Estimated revenue (KRW)</p>
+      </div>
+    </div>
+    <div class="img-grid">
+        <a class="tile-img tile-link" href="https://www.econovill.com/news/articleView.html?idxno=536328" target="_blank" rel="noopener" aria-label="언론 보도 기사 열기 — 웨스틴 조선 부산 어메니티 키트">
+          <img src="images/img15.jpg" alt="웨스틴 조선 부산 헬로 서머 패키지 어메니티 키트 — 트래블 가이드 카드·유자캔들·배쓰밤" loading="lazy">
+          <span class="tile-badge">언론 보도 ↗</span>
+        </a>
+        <figure class="tile-img" tabindex="0" data-ko="테마여행 10선 가을 기획전 — 상세페이지 기획·제작" data-en="K-Tour Top 10 autumn promotion — page planning and production">
+          <img src="images/img16.jpg" alt="테마여행 10선 가을 기획전 상세페이지" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="해태제과 연양갱 콜라보 — 테마여행 10선 패키지 10종" data-en="Haitai Yeonyanggaeng collab — 10 regional package designs">
+          <img src="images/img17.jpg" alt="해태제과 연양갱 콜라보 — 테마여행 10선 패키지 10종" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="연양갱을 찾아라 — 영상퀴즈 이벤트 페이지" data-en=""Find the Yeonyanggaeng" video-quiz event page">
+          <img src="images/img18.jpg" alt="연양갱을 찾아라 — 영상퀴즈 이벤트 페이지" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="집콕여행꾸러미 — 레트로 패키지 디자인" data-en="Stay-home travel kit — retro package design">
+          <img src="images/img19.jpg" alt="집콕여행꾸러미 — 레트로 패키지 디자인" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="집콕여행꾸러미 구성품" data-en="Travel-kit contents">
+          <img src="images/img20.jpg" alt="집콕여행꾸러미 구성품" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="집콕여행꾸러미 상품 연출컷" data-en="Travel-kit product styling">
+          <img src="images/img21.jpg" alt="집콕여행꾸러미 상품 연출컷" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="로컬 브랜드 굿즈 디테일 — 유리컵 세트" data-en="Local brand goods detail — glass cup set">
+          <img src="images/img22.jpg" alt="로컬 브랜드 굿즈 디테일 — 유리컵 세트" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="복순도가 × 테마여행10선 스페셜 꾸러미 상세페이지" data-en="Boksoondoga × K-Tour Top 10 special kit product page">
+          <img src="images/img23.jpg" alt="복순도가 × 테마여행10선 스페셜 꾸러미 상세페이지" loading="lazy">
+        </figure>
+        <figure class="tile-img" tabindex="0" data-ko="SRT 매거진 2021년 9월호 기고 지면" data-en="SRT Magazine September 2021 feature spread">
+          <img src="images/img24.jpg" alt="SRT 매거진 2021년 9월호 기고 지면" loading="lazy">
+        </figure>
+    </div>
+
+    <div class="videos">
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/494-poI05kY" title="대한민국 테마여행 10선 영상 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/hhZjY20rx6c" title="대한민국 테마여행 10선 영상 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/62HpdUuf4XQ" title="대한민국 테마여행 10선 영상 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/naSQMRLC7aU" title="대한민국 테마여행 10선 영상 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="big3" style="margin-top:34px;">
+      <div>
+        <div class="b-n g1">1,226만+</div>
+        <p class="b-c" data-lang="ko">협업 영상 누적 조회수</p>
+        <p class="b-c" data-lang="en">Cumulative collaboration video views</p>
+      </div>
+      <div>
+        <div class="b-n g2">983만 회</div>
+        <p class="b-c" data-lang="ko">GARAK 영상 누적 조회수</p>
+        <p class="b-c" data-lang="en">GARAK videos cumulative views</p>
+      </div>
+      <div>
+        <div class="b-n g3">Grand Prix</div>
+        <p class="b-c" data-lang="ko">A.N.D. 어워드 디지털 산업분야 · 도달 약 72만 건</p>
+        <p class="b-c" data-lang="en">A.N.D. Award, digital industry · approx. 720K reach</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= MORE PROJECTS (grey tiles) ================= -->
+<section class="panel grey" style="padding:80px 0 90px;">
+  <div class="reveal">
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="ko">그리고 더.</h2>
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="en">And more.</h2>
+  </div>
+  <div class="grid reveal">
+    <div class="tile">
+      <h3 data-lang="ko">지자체 마케팅 전략 컨설팅</h3>
+      <h3 data-lang="en">Regional Strategy Consulting</h3>
+      <p class="t-sub" data-lang="ko">울진군 관광 중장기 종합계획 · 서울시 국제이벤트 유치 컨설팅 · 야간관광 특화도시 기본계획 등 전략 수립 참여</p>
+      <p class="t-sub" data-lang="en">Uljin mid/long-term tourism plan · Seoul international-event bidding · night-tourism city master plans</p>
+    </div>
+    <div class="tile">
+      <h3 data-lang="ko">브랜드 콜라보 & 오프라인</h3>
+      <h3 data-lang="en">Brand Collabs & Offline</h3>
+      <p class="t-sub" data-lang="ko">해태제과 연양갱 패키지 콜라보 · 비발디파크 콜라보 행사 · 서울국제관광박람회·내나라여행박람회 부스 운영 · 2023 인바운드 관광 세미나 기획·운영</p>
+      <p class="t-sub" data-lang="en">Haitai snack-package collab · Vivaldi Park event · travel-fair booths · 2023 inbound tourism seminar</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECT 03 (dark) ================= -->
+<section class="panel dark panel-pad">
+  <div class="reveal">
+    <p class="eyebrow"><span class="pj" data-lang="ko">프로젝트 03</span><span class="pj" data-lang="en">Project 03</span> · Chaum Clinic</p>
+    <h2 class="headline" data-lang="ko">카카오 채널 성장 & 자동화</h2>
+    <h2 class="headline" data-lang="en">Kakao Growth & Automation</h2>
+    <p class="subhead" data-lang="ko">프리미엄 의료 브랜드 차움의원의 카카오톡 채널과 카드뉴스 운영 총괄. 제휴 마케팅과 센터별 프로모션 운영을 담당하며 알림톡 자동화 프로젝트를 PM으로 주도했습니다.</p>
+    <p class="subhead" data-lang="en">Own the KakaoTalk channel and card-news operations for premium clinic Chaum. Handle partnership marketing and center-specific promotions while leading notification automation as PM.</p>
+    <div class="stat g4">+25%</div>
+    <p class="stat-cap" data-lang="ko">6개월 내 채널 팔로워 성장</p>
+    <p class="stat-cap" data-lang="en">Follower growth within 6 months</p>
+    <div class="facts">
+      <div class="fact"><div class="f-n" data-lang="ko">제휴</div><div class="f-n" data-lang="en">Partnership</div><p class="f-c" data-lang="ko">제휴 마케팅 담당 — 외부 파트너 협업 기획·운영</p><p class="f-c" data-lang="en">Partnership marketing — external collaborations</p></div>
+      <div class="fact"><div class="f-n" data-lang="ko">센터별</div><div class="f-n" data-lang="en">By Center</div><p class="f-c" data-lang="ko">센터별 프로모션 기획·운영 담당</p><p class="f-c" data-lang="en">Center-specific promotion planning and operation</p></div>
+      <div class="fact"><div class="f-n">PM</div><p class="f-c" data-lang="ko">알림톡 전환 자동화 — 다부서 협업 조율, 운영 비용 절감</p><p class="f-c" data-lang="en">Automation project — cross-team coordination, cost savings</p></div>
+      <div class="fact"><div class="f-n">VIP</div><p class="f-c" data-lang="ko">개원기념 행사 전체 기획·운영 · 세그먼트 유료메시지·리텐션</p><p class="f-c" data-lang="en">Full VIP event · segment messaging and retention</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================= CAREER ================= -->
+<section class="panel light panel-pad" id="career">
+  <div class="reveal">
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="ko">경력.</h2>
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="en">Career.</h2>
+    <p class="subhead" data-lang="ko">총 약 5년 8개월. 서울에서 로테르담까지.</p>
+    <p class="subhead" data-lang="en">About 5 years 8 months. From Seoul to Rotterdam.</p>
+  </div>
+
+  <div class="detail reveal" style="margin-top:44px;">
+    <div class="row">
+      <div class="when">2024.09 — <span data-lang="ko">재직 중</span><span data-lang="en">Present</span></div>
+      <div>
+        <h3 data-lang="ko">성광의료재단 차움의원</h3>
+        <h3 data-lang="en">Chaum Clinic, Sungkwang Medical Foundation</h3>
+        <p class="role" data-lang="ko">홍보마케팅팀 — 카카오톡 채널·카드뉴스 · 제휴 마케팅 · 센터별 프로모션</p>
+        <p class="role" data-lang="en">Marketing & PR — Kakao channel & card news · partnerships · center promotions</p>
+        <ul data-lang="ko">
+          <li>카카오톡 채널·카드뉴스 운영 총괄 — <strong>6개월 내 팔로워 25% 이상 성장</strong></li>
+          <li><strong>제휴 마케팅</strong> 담당 — 외부 파트너 협업 기획·운영</li>
+          <li><strong>센터별 프로모션</strong> 기획·운영 담당</li>
+          <li>알림톡 전환 자동화 프로젝트 <strong>PM</strong> — 다부서 협업 조율, 운영 비용 절감</li>
+          <li>VIP 개원기념 행사 전체 기획·운영 · 세그먼트 기반 유료메시지·리텐션 관리</li>
+        </ul>
+        <ul data-lang="en">
+          <li>Own KakaoTalk channel and card-news operations — <strong>followers +25% in 6 months</strong></li>
+          <li><strong>Partnership marketing</strong> — planning and running external collaborations</li>
+          <li><strong>Center-specific promotions</strong> — planning and operation</li>
+          <li><strong>PM</strong> for notification-message automation — cross-team coordination, cost savings</li>
+          <li>Full VIP event planning; segment-based paid messaging and retention</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">2021.04 — 2024.02</div>
+      <div>
+        <h3 data-lang="ko">(사)한국관광개발연구원</h3>
+        <h3 data-lang="en">Korea Tourism Development Institute</h3>
+        <p class="role" data-lang="ko">관광전략마케팅팀 연구원 — 국가·지자체 사업 브랜드 마케팅</p>
+        <p class="role" data-lang="en">Researcher — brand marketing for national and regional projects</p>
+        <ul data-lang="ko">
+          <li><strong>강원네이처로드</strong> — SNS 운영·미디어믹스 광고·홈페이지 기획·유튜브 전 과정·서포터즈</li>
+          <li>Tesla·할리데이비슨·블랙야크·내셔널지오그래픽 매거진·더바이크 협업 · 카카오맵 등록 · 휴게소 영상 광고 · 인터파크투어 상품 판매</li>
+          <li><strong>대한민국 테마여행 10선</strong> — 집콕여행꾸러미·검색광고·슈퍼주니어 영상·해태제과 콜라보</li>
+          <li>울진군 중장기 종합계획 · 서울시 국제이벤트 유치 컨설팅 등 전략 수립 참여</li>
+          <li>소속 기관 제48회 관광의 날 <strong>문화체육관광부 장관 표창</strong> 수상</li>
+        </ul>
+        <ul data-lang="en">
+          <li><strong>Gangwon Nature Road</strong> — social channels, media-mix ads, website planning, full-cycle YouTube</li>
+          <li>Collabs with Tesla, Harley-Davidson, BlackYak, National Geographic magazine, The Bike · Kakao Map listing · rest-stop video ads · Interpark Tour sales</li>
+          <li><strong>K-Tour Top 10</strong> — travel kit, search ads, Super Junior videos, Haitai collab</li>
+          <li>Strategy consulting for regional governments</li>
+          <li>Institute received the <strong>Minister's Commendation</strong> at the 48th Tourism Day</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">2020.04 — 2020.10</div>
+      <div>
+        <h3 data-lang="ko">(주)플랜인피닛 · 마케팅팀</h3>
+        <h3 data-lang="en">Planinfinit · Marketing Team</h3>
+        <ul data-lang="ko">
+          <li>동남아 중심 해외 시장조사 보고서 — 수출입 데이터·공급망 분석 · 프리랜서 계약 관리</li>
+        </ul>
+        <ul data-lang="en">
+          <li>Overseas market reports on Southeast Asia — trade data and supply-chain analysis; freelancer management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">2017.08 — 2018.08</div>
+      <div>
+        <h3 data-lang="ko">현대글로벌서비스 유럽법인 (네덜란드 로테르담)</h3>
+        <h3 data-lang="en">Hyundai Global Service Europe B.V. (Rotterdam)</h3>
+        <ul data-lang="ko">
+          <li>선주사·제조업체·물류센터 간 글로벌 커뮤니케이션·일정 조율 · 월간 목표 매출 관리·데이터 분석</li>
+        </ul>
+        <ul data-lang="en">
+          <li>Global logistics coordination in English; monthly sales-target management and data analysis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="panel grey panel-pad" id="skills">
+  <div class="reveal">
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="ko">스킬 & 툴.</h2>
+    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="en">Skills & Tools.</h2>
+  </div>
+  <div class="skill-wrap reveal">
+    <div class="skill-col">
+      <h3 data-lang="ko">채널 운영</h3><h3 data-lang="en">Channels</h3>
+      <div class="chips">
+        <span class="chip">Instagram</span><span class="chip">Facebook</span><span class="chip">YouTube</span>
+        <span class="chip" data-lang="ko">카카오톡 채널</span><span class="chip" data-lang="en">KakaoTalk</span>
+        <span class="chip" data-lang="ko">블로그</span><span class="chip" data-lang="en">Blog</span>
+        <span class="chip">TikTok</span>
+      </div>
+    </div>
+    <div class="skill-col">
+      <h3 data-lang="ko">광고 집행</h3><h3 data-lang="en">Paid media</h3>
+      <div class="chips">
+        <span class="chip">Meta Ads</span><span class="chip">Google Ads</span>
+        <span class="chip" data-lang="ko">네이버 검색광고</span><span class="chip" data-lang="en">Naver Search Ads</span>
+        <span class="chip" data-lang="ko">카카오 검색광고</span><span class="chip" data-lang="en">Kakao Search Ads</span>
+        <span class="chip">Kakao Biz Center</span>
+      </div>
+    </div>
+    <div class="skill-col">
+      <h3 data-lang="ko">콘텐츠 제작</h3><h3 data-lang="en">Content</h3>
+      <div class="chips">
+        <span class="chip">Photoshop</span><span class="chip">Illustrator</span>
+        <span class="chip">Premiere Pro</span><span class="chip">After Effects</span>
+        <span class="chip">Canva</span>
+        <span class="chip" data-lang="ko">카드뉴스</span><span class="chip" data-lang="en">Card news</span>
+      </div>
+    </div>
+    <div class="skill-col">
+      <h3 data-lang="ko">협업 & 오피스</h3><h3 data-lang="en">Collab & office</h3>
+      <div class="chips">
+        <span class="chip">PowerPoint</span><span class="chip">Excel</span><span class="chip">Notion</span>
+        <span class="chip">Mac / Windows</span>
+        <span class="chip" data-lang="ko">인플루언서 협업</span><span class="chip" data-lang="en">Influencer collabs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="edu-strip reveal">
+    <div>
+      <h3>Erasmus University Rotterdam</h3>
+      <p data-lang="ko">BA, International Arts and Culture Studies<br>2014.09 – 2017.07 · 네덜란드 로테르담</p>
+      <p data-lang="en">BA, International Arts and Culture Studies<br>Sept 2014 – July 2017 · Rotterdam, the Netherlands</p>
+    </div>
+    <div>
+      <h3 data-lang="ko">영어 — OPIc Advanced Low</h3>
+      <h3 data-lang="en">English — OPIc Advanced Low</h3>
+      <p data-lang="ko">2025.10 취득 · 네덜란드 유학 3년 · 유럽법인 근무 1년의 실전 글로벌 커뮤니케이션 경험</p>
+      <p data-lang="en">Certified Oct 2025 · 3 years studying in the Netherlands plus 1 year at a European branch office</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="panel dark panel-pad" id="contact">
+  <div class="reveal">
+    <h2 class="headline" data-lang="ko">다음 프로젝트.<br>함께 만들 수 있습니다.</h2>
+    <h2 class="headline" data-lang="en">The next project.<br>Let's make it together.</h2>
+    <div class="cta-btns">
+      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com">youjin.yoon95@gmail.com</a>
+      <a class="btn ghost" href="tel:+821026033999">+82 10 2603 3999</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot-inner">
+    <p class="fine" data-lang="ko">본 포트폴리오의 모든 성과 수치는 실제 수행 프로젝트 결과 기준입니다. Tesla × Stayfolio 캠페인 참가자 11,947명(2주) · 집콕여행꾸러미 41개 상품 10,233개 판매(추정 매출 약 1억 7,510만 원) · 슈퍼주니어 협업 영상 11편 243만 회 · GARAK 영상 983만 회 · A.N.D. 어워드 디지털 산업분야 그랑프리(도달 약 72만 건) · 차움의원 카카오 채널 팔로워 6개월 내 25% 이상 성장.</p>
+    <p class="fine" data-lang="en" style="display:none;">All figures are based on actual project outcomes. Tesla × Stayfolio campaign 11,947 participants (2 weeks) · 41 travel-kit products with 10,233 units sold (est. KRW 175.1M) · 11 Super Junior videos 2.43M views · GARAK videos 9.83M · A.N.D. Award Grand Prix (approx. 720K reach) · Chaum Kakao followers +25% in 6 months.</p>
+    <div class="foot-meta">
+      <span>Copyright © 2026 YouJin Yoon. All rights reserved.</span>
+      <span data-lang="ko">서울 · 대한민국</span><span data-lang="en">Seoul, South Korea</span>
+      <a href="mailto:youjin.yoon95@gmail.com">youjin.yoon95@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('langToggle');
+  btn.addEventListener('click', () => {
+    const en = document.body.classList.toggle('en');
+    btn.textContent = en ? 'KO' : 'EN';
+    document.documentElement.lang = en ? 'en' : 'ko';
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<script>
+  document.querySelectorAll('.slider').forEach(function(slider){
+    const track = slider.querySelector('.slider-track');
+    const items = slider.querySelectorAll('.slide-item');
+    const dotsWrap = slider.querySelector('.s-dots');
+    let idx = 0;
+    items.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.setAttribute('aria-label','슬라이드 '+(i+1));
+      d.addEventListener('click',()=>go(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots = dotsWrap.querySelectorAll('button');
+    function go(i){
+      idx=(i+items.length)%items.length;
+      track.style.transform='translateX(-'+(idx*100)+'%)';
+      dots.forEach((d,j)=>d.classList.toggle('on',j===idx));
+    }
+    slider.querySelector('.prev').addEventListener('click',()=>go(idx-1));
+    slider.querySelector('.next').addEventListener('click',()=>go(idx+1));
+    let sx=null;
+    slider.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+    slider.addEventListener('touchend',e=>{
+      if(sx===null) return;
+      const dx=e.changedTouches[0].clientX-sx;
+      if(Math.abs(dx)>40) go(idx+(dx<0?1:-1));
+      sx=null;
+    },{passive:true});
+    go(0);
+  });
+</script>
+<script>
+  (function(){
+    const lb = document.getElementById('lightbox');
+    if(!lb) return;
+    const lbImg = lb.querySelector('img');
+    const lbCap = lb.querySelector('.lb-cap');
+    function open(fig){
+      lbImg.src = fig.querySelector('img').src;
+      const en = document.body.classList.contains('en');
+      lbCap.textContent = en ? (fig.dataset.en||'') : (fig.dataset.ko||'');
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      lb.hidden = true;
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.img-grid').forEach(grid=>{
+      const wrap = document.createElement('div');
+      wrap.className = 'grid-wrap';
+      grid.parentNode.insertBefore(wrap, grid);
+      wrap.appendChild(grid);
+      const mk = (cls,txt,dir)=>{
+        const b=document.createElement('button');
+        b.className='g-btn '+cls;b.textContent=txt;
+        b.setAttribute('aria-label',dir>0?'다음 이미지':'이전 이미지');
+        b.addEventListener('click',()=>grid.scrollBy({left:dir*grid.clientWidth*0.8,behavior:'smooth'}));
+        wrap.appendChild(b);
+      };
+      mk('prev','‹',-1); mk('next','›',1);
+    });
+    document.querySelectorAll('.img-grid .tile-img').forEach(f=>{
+      f.addEventListener('click',()=>open(f));
+      f.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f);} });
+    });
+    lb.addEventListener('click',e=>{ if(e.target!==lbImg) close(); });
+    lb.querySelector('.lb-close').addEventListener('click',close);
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !lb.hidden) close(); });
+  })();
+</script>
+</body>
+</html>
