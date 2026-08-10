@@ -33,6 +33,12 @@
   body.en [data-lang="ko"]{display:none !important;}
   body.en ul.pj-list[data-lang="en"]{display:grid !important;}
 
+  /* keep words intact — no mid-word line breaks */
+  body, h1, h2, h3, p, li, span, a, div{
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+
   /* ---------- nav ---------- */
   .nav{
     position:sticky;top:0;z-index:100;
@@ -42,7 +48,7 @@
     border-bottom:1px solid rgba(0,0,0,.08);
   }
   .nav-inner{
-    max-width:1024px;margin:0 auto;
+    max-width:860px;margin:0 auto;
     display:flex;align-items:center;justify-content:space-between;
     height:48px;padding:0 22px;
   }
@@ -75,12 +81,12 @@
   .eyebrow .pj{color:var(--blue);}
   .panel.dark .eyebrow .pj{color:var(--blue-dark);}
 
-  .headline{font-size:clamp(38px,6.4vw,64px);font-weight:700;letter-spacing:-.02em;line-height:1.08;}
-  .headline.xl{font-size:clamp(48px,9vw,96px);}
+  .headline{font-size:clamp(36px,5.4vw,56px);font-weight:700;letter-spacing:-.02em;line-height:1.08;}
+  .headline.xl{font-size:clamp(46px,7.6vw,80px);}
   .subhead{
-    font-size:clamp(18px,2.3vw,25px);font-weight:400;
-    color:var(--ink-soft);margin-top:12px;line-height:1.45;
-    max-width:34em;margin-left:auto;margin-right:auto;
+    font-size:clamp(18px,2.3vw,24px);font-weight:400;
+    color:var(--ink-soft);margin-top:12px;line-height:1.5;
+    max-width:30em;margin-left:auto;margin-right:auto;
   }
   .panel.dark .subhead{color:#a1a1a6;}
 
@@ -91,7 +97,7 @@
   .panel.dark .links a{color:var(--blue-dark);}
 
   /* hero hashtags */
-  .hashtags{margin-top:28px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:640px;margin-left:auto;margin-right:auto;}
+  .hashtags{margin-top:28px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap;max-width:520px;margin-left:auto;margin-right:auto;}
   .hashtags .tag{
     font-size:14px;font-weight:500;color:var(--blue);
     background:rgba(0,102,204,.08);
@@ -116,8 +122,8 @@
 
   /* project bullet list */
   .pj-list{
-    max-width:680px;margin:34px auto 0;text-align:left;
-    display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;list-style:none;
+    max-width:560px;margin:34px auto 0;text-align:left;
+    display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;list-style:none;
   }
   @media(max-width:640px){.pj-list{grid-template-columns:1fr;}}
   .pj-list li{
@@ -129,7 +135,7 @@
 
   /* three big stats */
   .big3{
-    max-width:1080px;margin:56px auto 0;
+    max-width:720px;margin:52px auto 0;
     display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
   }
   @media(max-width:760px){.big3{gap:10px;}}
@@ -165,7 +171,7 @@
 
   /* small tile grid (secondary highlights) */
   .grid{
-    max-width:1240px;margin:44px auto 0;
+    max-width:860px;margin:44px auto 0;
     display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px;
   }
   @media(max-width:840px){.grid{grid-template-columns:1fr;}}
@@ -197,11 +203,11 @@
 
 
   /* image grid — 2 rows, horizontal slide */
-  .grid-wrap{position:relative;max-width:1080px;margin:56px auto 0;}
+  .grid-wrap{position:relative;max-width:760px;margin:52px auto 0;}
   .img-grid{
     display:grid;grid-auto-flow:column;
     grid-template-rows:repeat(2,1fr);
-    grid-auto-columns:clamp(130px,16vw,190px);
+    grid-auto-columns:clamp(120px,14vw,160px);
     gap:0;overflow-x:auto;
     scroll-snap-type:x proximity;scroll-behavior:smooth;
     scrollbar-width:none;-ms-overflow-style:none;
@@ -248,24 +254,33 @@
   }
   .tile-link:hover .tile-badge, .tile-link:focus-visible .tile-badge{opacity:1;}
 
-  /* video embeds — small thumbnails */
-  .videos{
-    max-width:1080px;margin:28px auto 0;
-    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  .sub-head{
+    margin-top:52px;font-size:15px;font-weight:600;
+    color:#a1a1a6;letter-spacing:.01em;
   }
-  .videos > div{width:min(300px,46%);}
-  @media(max-width:480px){.videos > div{width:min(300px,80%);}}
+  .panel.light .sub-head, .panel.grey .sub-head{color:var(--ink-soft);}
+
+  .mail-line{margin-top:18px;font-size:14px;color:#86868b;letter-spacing:.01em;}
+
+  /* video row — horizontal slide */
+  .video-wrap-outer{position:relative;max-width:760px;margin:34px auto 0;}
+  .videos{
+    display:flex;gap:12px;overflow-x:auto;
+    scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .videos::-webkit-scrollbar{display:none;}
+  .videos > div{flex:0 0 calc(50% - 6px);scroll-snap-align:start;}
+  @media(max-width:640px){.videos > div{flex:0 0 100%;}}
   .video-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111;}
   .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-  .v-cap{margin-top:8px;font-size:11.5px;color:#86868b;text-align:center;}
-
-  .panel.light .s-btn, .panel.grey .s-btn{background:rgba(29,29,31,.55);color:#fff;}
-  .panel.light .s-btn:hover, .panel.grey .s-btn:hover{background:rgba(29,29,31,.8);}
-  .panel.light .s-dots button, .panel.grey .s-dots button{background:#c7c7cc;}
-  .panel.light .s-dots button.on, .panel.grey .s-dots button.on{background:#1d1d1f;}
+  .v-dots{display:flex;justify-content:center;gap:7px;margin-top:14px;}
+  .v-dots button{width:7px;height:7px;border-radius:50%;border:none;cursor:pointer;background:#8e8e93;padding:0;opacity:.45;transition:all .2s;}
+  .v-dots button.on{opacity:1;transform:scale(1.35);}
+  .panel.dark .v-dots button{background:#f5f5f7;}
 
   /* ---------- detail rows (career) ---------- */
-  .detail{max-width:1024px;margin:0 auto;text-align:left;padding:0 22px;}
+  .detail{max-width:760px;margin:0 auto;text-align:left;padding:0 22px;}
   .row{display:grid;grid-template-columns:190px 1fr;gap:34px;padding:38px 0;border-top:1px solid #d2d2d7;}
   .row:first-of-type{border-top:none;}
   @media(max-width:700px){.row{grid-template-columns:1fr;gap:8px;}}
@@ -279,7 +294,7 @@
 
   /* ---------- skills ---------- */
   .skill-wrap{
-    max-width:1024px;margin:44px auto 0;text-align:left;padding:0 22px;
+    max-width:760px;margin:44px auto 0;text-align:left;padding:0 22px;
     display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:38px;
   }
   .skill-col h3{font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;}
@@ -288,7 +303,7 @@
 
   /* ---------- edu ---------- */
   .edu-strip{
-    max-width:1024px;margin:44px auto 0;padding:0 22px;text-align:left;
+    max-width:760px;margin:44px auto 0;padding:0 22px;text-align:left;
     display:grid;grid-template-columns:1fr 1fr;gap:38px;
   }
   @media(max-width:700px){.edu-strip{grid-template-columns:1fr;}}
@@ -304,9 +319,9 @@
   .btn.ghost:hover{background:var(--blue-dark);color:#000;}
 
   footer{background:var(--grey);border-top:1px solid #d2d2d7;}
-  .foot-inner{max-width:1024px;margin:0 auto;padding:24px 22px 44px;text-align:left;}
+  .foot-inner{max-width:760px;margin:0 auto;padding:24px 22px 44px;text-align:left;}
   .fine{font-size:12px;color:var(--ink-soft);line-height:1.7;border-bottom:1px solid #d2d2d7;padding-bottom:14px;}
-  .foot-meta{margin-top:14px;font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .foot-meta{margin-top:0;font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
   .foot-meta a{color:var(--ink-soft);}
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
@@ -372,6 +387,7 @@
       <li>서포터즈 운영</li>
       <li>인스타그램 등 SNS 채널 운영</li>
       <li>유튜브 영상 콘텐츠 제작</li>
+      <li>비발디파크 협업 행사 기획·운영</li>
     </ul>
     <ul class="pj-list" data-lang="en">
       <li>Tesla × Stayfolio collaboration campaign</li>
@@ -386,6 +402,7 @@
       <li>Supporter program</li>
       <li>Social channel operations incl. Instagram</li>
       <li>YouTube video content production</li>
+      <li>Vivaldi Park collaboration event</li>
     </ul>
     <div class="big3">
       <div>
@@ -486,7 +503,6 @@
       <li>웨스틴 조선 부산 헬로 서머 패키지 어메니티 키트 제작</li>
       <li>슈퍼주니어 협업 영상 콘텐츠 제작 (11편 243만 회)</li>
       <li>GARAK 해외 홍보 영상 제작 (983만 회)</li>
-      <li>서울국제관광박람회·내나라여행박람회 부스 운영</li>
       <li>SRT 매거진 기사 원고 작성</li>
     </ul>
     <ul class="pj-list" data-lang="en">
@@ -499,7 +515,6 @@
       <li>Amenity kit for the Westin Josun Busan summer package</li>
       <li>Super Junior video content production (11 videos, 2.43M views)</li>
       <li>GARAK overseas promotional film production (9.83M views)</li>
-      <li>Travel-fair booth operations</li>
       <li>SRT magazine article writing</li>
     </ul>
     <div class="big3">
@@ -597,25 +612,48 @@
 </section>
 
 
-<!-- ================= MORE PROJECTS (grey tiles) ================= -->
-<section class="panel grey" style="padding:80px 0 90px;">
+
+<!-- ================= KTDI OTHER WORK ================= -->
+<section class="panel grey panel-pad">
   <div class="reveal">
-    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="ko">그리고 더.</h2>
-    <h2 class="headline" style="font-size:clamp(30px,4.6vw,48px);" data-lang="en">And more.</h2>
-  </div>
-  <div class="grid reveal">
-    <div class="tile">
-      <h3 data-lang="ko">지자체 마케팅 전략 컨설팅</h3>
-      <h3 data-lang="en">Regional Strategy Consulting</h3>
-      <p class="t-sub" data-lang="ko">울진군 관광 중장기 종합계획 · 서울시 국제이벤트 유치 컨설팅 · 야간관광 특화도시 기본계획 등 전략 수립 참여</p>
-      <p class="t-sub" data-lang="en">Uljin mid/long-term tourism plan · Seoul international-event bidding · night-tourism city master plans</p>
-    </div>
-    <div class="tile">
-      <h3 data-lang="ko">브랜드 콜라보 & 오프라인</h3>
-      <h3 data-lang="en">Brand Collabs & Offline</h3>
-      <p class="t-sub" data-lang="ko">해태제과 연양갱 패키지 콜라보 · 비발디파크 콜라보 행사 · 서울국제관광박람회·내나라여행박람회 부스 운영 · 2023 인바운드 관광 세미나 기획·운영</p>
-      <p class="t-sub" data-lang="en">Haitai snack-package collab · Vivaldi Park event · travel-fair booths · 2023 inbound tourism seminar</p>
-    </div>
+    <h2 class="headline" style="font-size:clamp(30px,4.2vw,44px);" data-lang="ko">그 외 수행 업무</h2>
+    <h2 class="headline" style="font-size:clamp(30px,4.2vw,44px);" data-lang="en">Other Work</h2>
+    <p class="subhead" data-lang="ko">한국관광개발연구원 재직 중 수행한 컨설팅과 오프라인 프로모션.</p>
+    <p class="subhead" data-lang="en">Consulting and offline promotions carried out at the Korea Tourism Development Institute.</p>
+
+    <h3 class="sub-head" data-lang="ko">지자체 마케팅 전략 컨설팅</h3>
+    <h3 class="sub-head" data-lang="en">Regional marketing strategy consulting</h3>
+    <ul class="pj-list" data-lang="ko">
+      <li>울진군 관광 중장기 종합계획 수립</li>
+      <li>서울시 국제이벤트 유치 컨설팅</li>
+      <li>야간관광 특화도시 기본계획 수립</li>
+      <li>지자체 관광 브랜드 전략 기획</li>
+    </ul>
+    <ul class="pj-list" data-lang="en">
+      <li>Uljin mid/long-term tourism master plan</li>
+      <li>Seoul international-event bidding consulting</li>
+      <li>Night-tourism city master plans</li>
+      <li>Regional tourism brand strategy</li>
+    </ul>
+
+    <h3 class="sub-head" data-lang="ko">온오프라인 콜라보 및 프로모션</h3>
+    <h3 class="sub-head" data-lang="en">On/offline collaborations and promotions</h3>
+    <ul class="pj-list" data-lang="ko">
+      <li>서울국제관광박람회 부스 운영</li>
+      <li>내나라여행박람회 부스 운영</li>
+      <li>2023 인바운드 관광 세미나 기획·운영</li>
+      <li>비발디파크 협업 행사 기획·운영</li>
+      <li>해태제과 연양갱 패키지 콜라보</li>
+      <li>복순도가 스페셜 꾸러미 콜라보</li>
+    </ul>
+    <ul class="pj-list" data-lang="en">
+      <li>Seoul International Travel Fair booth</li>
+      <li>Naenara Travel Fair booth</li>
+      <li>2023 inbound tourism seminar planning</li>
+      <li>Vivaldi Park collaboration event</li>
+      <li>Haitai snack-package collaboration</li>
+      <li>Boksoondoga special-kit collaboration</li>
+    </ul>
   </div>
 </section>
 
@@ -630,12 +668,28 @@
     <div class="stat g4">+25%</div>
     <p class="stat-cap" data-lang="ko">6개월 내 채널 팔로워 성장</p>
     <p class="stat-cap" data-lang="en">Follower growth within 6 months</p>
-    <div class="facts">
-      <div class="fact"><div class="f-n" data-lang="ko">제휴</div><div class="f-n" data-lang="en">Partnership</div><p class="f-c" data-lang="ko">제휴 마케팅 담당 — 외부 파트너 협업 기획·운영</p><p class="f-c" data-lang="en">Partnership marketing — external collaborations</p></div>
-      <div class="fact"><div class="f-n" data-lang="ko">센터별</div><div class="f-n" data-lang="en">By Center</div><p class="f-c" data-lang="ko">센터별 프로모션 기획·운영 담당</p><p class="f-c" data-lang="en">Center-specific promotion planning and operation</p></div>
-      <div class="fact"><div class="f-n">PM</div><p class="f-c" data-lang="ko">알림톡 전환 자동화 — 다부서 협업 조율, 운영 비용 절감</p><p class="f-c" data-lang="en">Automation project — cross-team coordination, cost savings</p></div>
-      <div class="fact"><div class="f-n">VIP</div><p class="f-c" data-lang="ko">개원기념 행사 전체 기획·운영 · 세그먼트 유료메시지·리텐션</p><p class="f-c" data-lang="en">Full VIP event · segment messaging and retention</p></div>
-    </div>
+    <h3 class="sub-head" data-lang="ko">그 외 담당 업무</h3>
+    <h3 class="sub-head" data-lang="en">Other responsibilities</h3>
+    <ul class="pj-list" data-lang="ko">
+      <li>제휴 마케팅 — 외부 파트너 협업 기획·운영</li>
+      <li>센터별 프로모션 기획·운영</li>
+      <li>알림톡 전환 자동화 프로젝트 PM</li>
+      <li>VIP 개원기념 행사 기획·운영</li>
+      <li>타깃 세그먼트 유료메시지 발송</li>
+      <li>회원 리텐션 관리</li>
+      <li>의학 카드뉴스 자체 제작</li>
+      <li>병원 브랜드 이미지 촬영·아카이브 관리</li>
+    </ul>
+    <ul class="pj-list" data-lang="en">
+      <li>Partnership marketing with external partners</li>
+      <li>Center-specific promotion planning</li>
+      <li>PM for notification-message automation</li>
+      <li>VIP anniversary event planning</li>
+      <li>Segment-based paid messaging</li>
+      <li>Member retention management</li>
+      <li>In-house medical card news</li>
+      <li>Brand photography and archive</li>
+    </ul>
   </div>
 </section>
 
@@ -702,8 +756,8 @@
     <div class="row">
       <div class="when">2020.04 — 2020.10</div>
       <div>
-        <h3 data-lang="ko">(주)플랜인피닛 · 마케팅팀</h3>
-        <h3 data-lang="en">Planinfinit · Marketing Team</h3>
+        <h3 data-lang="ko">본글로벌 · 마케팅팀</h3>
+        <h3 data-lang="en">Born Global · Marketing Team</h3>
         <ul data-lang="ko">
           <li>동남아 중심 해외 시장조사 보고서 — 수출입 데이터·공급망 분석 · 프리랜서 계약 관리</li>
         </ul>
@@ -791,20 +845,22 @@
 <!-- ================= CONTACT ================= -->
 <section class="panel dark panel-pad" id="contact">
   <div class="reveal">
-    <h2 class="headline" data-lang="ko">다음 프로젝트.<br>함께 만들 수 있습니다.</h2>
-    <h2 class="headline" data-lang="en">The next project.<br>Let's make it together.</h2>
+    <h2 class="headline" data-lang="ko">기획부터 실행까지<br>혼자서도 굴러갑니다.</h2>
+    <h2 class="headline" data-lang="en">From planning to execution.<br>I run the whole thing.</h2>
+    <p class="subhead" data-lang="ko">브랜드를 만들고 채널을 키우고 숫자로 증명해왔습니다.<br>지금 필요한 마케터가 여기 있습니다.</p>
+    <p class="subhead" data-lang="en">I build brands, grow channels, and prove it with numbers.<br>The marketer you need is right here.</p>
     <div class="cta-btns">
-      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com">youjin.yoon95@gmail.com</a>
-      <a class="btn ghost" href="tel:+821026033999">+82 10 2603 3999</a>
+      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com" data-lang="ko">채용 문의하기</a>
+      <a class="btn fill" href="mailto:youjin.yoon95@gmail.com" data-lang="en">Get in touch</a>
     </div>
+    <p class="mail-line">youjin.yoon95@gmail.com</p>
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="foot-inner">
-    <p class="fine" data-lang="ko">본 포트폴리오의 모든 성과 수치는 실제 수행 프로젝트 결과 기준입니다. Tesla × Stayfolio 캠페인 참가자 11,947명(2주) · 집콕여행꾸러미 41개 상품 10,233개 판매(추정 매출 약 1억 7,510만 원) · 슈퍼주니어 협업 영상 11편 243만 회 · GARAK 영상 983만 회 · A.N.D. 어워드 디지털 산업분야 그랑프리(도달 약 72만 건) · 차움의원 카카오 채널 팔로워 6개월 내 25% 이상 성장.</p>
-    <p class="fine" data-lang="en" style="display:none;">All figures are based on actual project outcomes. Tesla × Stayfolio campaign 11,947 participants (2 weeks) · 41 travel-kit products with 10,233 units sold (est. KRW 175.1M) · 11 Super Junior videos 2.43M views · GARAK videos 9.83M · A.N.D. Award Grand Prix (approx. 720K reach) · Chaum Kakao followers +25% in 6 months.</p>
+    
     <div class="foot-meta">
       <span>Copyright © 2026 YouJin Yoon. All rights reserved.</span>
       <span data-lang="ko">서울 · 대한민국</span><span data-lang="en">Seoul, South Korea</span>
@@ -875,6 +931,28 @@
       lbImg.src = '';
       document.body.style.overflow = '';
     }
+    document.querySelectorAll('.videos').forEach(row=>{
+      const outer=document.createElement('div');
+      outer.className='video-wrap-outer';
+      row.parentNode.insertBefore(outer,row);
+      outer.appendChild(row);
+      const dots=document.createElement('div');
+      dots.className='v-dots';
+      outer.appendChild(dots);
+      const items=row.children;
+      for(let i=0;i<items.length;i++){
+        const b=document.createElement('button');
+        b.setAttribute('aria-label','영상 '+(i+1));
+        b.addEventListener('click',()=>items[i].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'}));
+        dots.appendChild(b);
+      }
+      const mark=()=>{
+        const idx=Math.round(row.scrollLeft/(row.scrollWidth/items.length));
+        [...dots.children].forEach((d,j)=>d.classList.toggle('on',j===idx));
+      };
+      row.addEventListener('scroll',mark,{passive:true});
+      mark();
+    });
     document.querySelectorAll('.img-grid').forEach(grid=>{
       const wrap = document.createElement('div');
       wrap.className = 'grid-wrap';
@@ -889,7 +967,7 @@
       };
       mk('prev','‹',-1); mk('next','›',1);
     });
-    document.querySelectorAll('.img-grid .tile-img').forEach(f=>{
+    document.querySelectorAll('.img-grid .tile-img:not(.tile-link)').forEach(f=>{
       f.addEventListener('click',()=>open(f));
       f.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f);} });
     });
