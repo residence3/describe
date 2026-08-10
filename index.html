@@ -61,12 +61,21 @@
   .nav ul a{font-size:12px;color:var(--ink);text-decoration:none;opacity:.85;transition:opacity .2s;}
   .nav ul a:hover{opacity:1;}
   @media(max-width:760px){
-    .nav-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:8px;}
+    .nav-inner{height:46px;flex-wrap:nowrap;padding:0 12px;gap:8px;}
+    .nav .brand{font-size:13px;flex:0 0 auto;}
     .nav ul{
       position:static;transform:none;
-      gap:16px;order:3;width:100%;justify-content:center;padding-bottom:2px;
+      gap:12px;flex:1 1 auto;justify-content:center;
+      overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
     }
-    .nav ul a{font-size:12.5px;}
+    .nav ul::-webkit-scrollbar{display:none;}
+    .nav ul a{font-size:11.5px;white-space:nowrap;}
+    .lang-btn{padding:4px 10px;font-size:10px;flex:0 0 auto;}
+  }
+  @media(max-width:400px){
+    .nav .brand{font-size:12px;}
+    .nav ul{gap:9px;}
+    .nav ul a{font-size:10.5px;}
   }
   .lang-btn{
     font-size:11px;font-weight:500;letter-spacing:.02em;
@@ -89,7 +98,7 @@
     padding:48px 22px;
   }
   @media(max-width:760px){
-    .hero-full{min-height:calc(100svh - 92px);padding:40px 18px;}
+    .hero-full{min-height:calc(100svh - 46px);padding:40px 18px;}
   }
 
 
@@ -839,6 +848,7 @@
       <div class="chips">
         <span class="chip">PowerPoint</span><span class="chip">Excel</span><span class="chip">Notion</span>
         <span class="chip">Mac / Windows</span>
+        <span class="chip" data-lang="ko">바이브 코딩</span><span class="chip" data-lang="en">Vibe coding</span>
         <span class="chip" data-lang="ko">인플루언서 협업</span><span class="chip" data-lang="en">Influencer collabs</span>
       </div>
     </div>
