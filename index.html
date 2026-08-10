@@ -379,13 +379,13 @@
   .chip{font-size:13px;background:var(--white);border:1px solid #d2d2d7;padding:6px 14px;border-radius:999px;color:var(--ink);}
 
   /* ---------- edu ---------- */
-  .edu-strip{
-    max-width:760px;margin:44px auto 0;padding:0 22px;text-align:left;
-    display:grid;grid-template-columns:1fr 1fr;gap:38px;
+  .lang-block{
+    max-width:760px;margin:44px auto 0;padding:26px 22px 0;
+    border-top:1px solid #d2d2d7;text-align:left;
   }
-  @media(max-width:700px){.edu-strip{grid-template-columns:1fr;}}
-  .edu-strip h3{font-size:19px;font-weight:600;}
-  .edu-strip p{font-size:15px;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
+  .lang-block h3{font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:10px;}
+  .lang-main{font-size:19px;font-weight:600;letter-spacing:-.01em;}
+  .lang-sub{font-size:15px;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
 
   /* ---------- contact ---------- */
   .cta-btns{margin-top:30px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
@@ -762,10 +762,12 @@
       <li>알림톡 전환 자동화 프로젝트 PM</li>
       <li>검진 고객 만족도조사 전산화 및 데이터 취합</li>
       <li>VIP 개원기념 행사 기획·운영</li>
+      <li>해외 VIP·고객사 시설 영문 투어</li>
       <li>타깃 세그먼트 유료메시지 발송</li>
       <li>회원 리텐션 관리</li>
       <li>의학 카드뉴스 자체 제작</li>
       <li>병원 브랜드 이미지 촬영·아카이브 관리</li>
+      <li>해외 VIP·고객사 시설 영문 투어</li>
     </ul>
     <ul class="pj-list" data-lang="en">
       <li>Partnership marketing with external partners</li>
@@ -773,10 +775,12 @@
       <li>PM for notification-message automation</li>
       <li>Digitized health-screening satisfaction surveys and data aggregation</li>
       <li>VIP anniversary event planning</li>
+      <li>English-language facility tours for overseas VIPs and clients</li>
       <li>Segment-based paid messaging</li>
       <li>Member retention management</li>
       <li>In-house medical card news</li>
       <li>Brand photography and archive</li>
+      <li>English facility tours for overseas VIPs and clients</li>
     </ul>
   </div>
 </section>
@@ -801,14 +805,14 @@
         <p class="role" data-lang="ko">홍보마케팅팀 — 카카오톡 채널·카드뉴스 · 제휴 마케팅 · 센터별 프로모션</p>
         <p class="role" data-lang="en">Marketing & PR — Kakao channel & card news · partnerships · center promotions</p>
         <ul data-lang="ko">
-          <li>카카오톡 채널·카드뉴스 운영 총괄 — <strong>6개월 내 팔로워 25% 이상 성장</strong></li>
+          <li>카카오톡 채널·카드뉴스 운영 총괄</li>
           <li><strong>제휴 마케팅</strong> 담당 — 외부 파트너 협업 기획·운영</li>
           <li><strong>센터별 프로모션</strong> 기획·운영 담당</li>
           <li>알림톡 전환 자동화 프로젝트 <strong>PM</strong> — 다부서 협업 조율, 운영 비용 절감</li>
           <li>VIP 개원기념 행사 전체 기획·운영 · 세그먼트 기반 유료메시지·리텐션 관리</li>
         </ul>
         <ul data-lang="en">
-          <li>Own KakaoTalk channel and card-news operations — <strong>followers +25% in 6 months</strong></li>
+          <li>Own KakaoTalk channel and card-news operations</li>
           <li><strong>Partnership marketing</strong> — planning and running external collaborations</li>
           <li><strong>Center-specific promotions</strong> — planning and operation</li>
           <li><strong>PM</strong> for notification-message automation — cross-team coordination, cost savings</li>
@@ -872,6 +876,17 @@
         </ul>
       </div>
     </div>
+
+    <div class="row">
+      <div class="when">2014.09 — 2017.07</div>
+      <div>
+        <h3>Erasmus University Rotterdam</h3>
+        <p class="role" data-lang="ko">BA, International Arts and Culture Studies · 네덜란드 로테르담</p>
+        <p class="role" data-lang="en">BA, International Arts and Culture Studies · Rotterdam, the Netherlands</p>
+      </div>
+    </div>
+
+
   </div>
 </section>
 
@@ -915,19 +930,16 @@
     </div>
   </div>
 
-  <div class="edu-strip reveal">
-    <div>
-      <h3>Erasmus University Rotterdam</h3>
-      <p data-lang="ko">BA, International Arts and Culture Studies<br>2014.09 – 2017.07 · 네덜란드 로테르담</p>
-      <p data-lang="en">BA, International Arts and Culture Studies<br>Sept 2014 – July 2017 · Rotterdam, the Netherlands</p>
-    </div>
-    <div>
-      <h3 data-lang="ko">영어 — OPIc Advanced Low</h3>
-      <h3 data-lang="en">English — OPIc Advanced Low</h3>
-      <p data-lang="ko">2025.10 취득 · 네덜란드 유학 3년 · 유럽법인 근무 1년의 실전 글로벌 커뮤니케이션 경험</p>
-      <p data-lang="en">Certified Oct 2025 · 3 years studying in the Netherlands plus 1 year at a European branch office</p>
-    </div>
+  <div class="lang-block reveal">
+    <h3 data-lang="ko">어학</h3>
+    <h3 data-lang="en">Language</h3>
+    <p class="lang-main" data-lang="ko">영어 — OPIc Advanced Low (AL)</p>
+    <p class="lang-main" data-lang="en">English — OPIc Advanced Low (AL)</p>
+    <p class="lang-sub" data-lang="ko">2025.10.19 취득 · 듣기 · 쓰기 · 말하기 모두 원어민 수준</p>
+    <p class="lang-sub" data-lang="en">Certified 19 Oct 2025 · Native-level listening, writing, and speaking</p>
   </div>
+
+
 </section>
 
 <!-- ================= CONTACT ================= -->
